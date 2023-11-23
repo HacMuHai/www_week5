@@ -23,23 +23,7 @@
 <body>
     <h1 th:align="center">ADD NEW CANDIDATE</h1>
     <div class="x">
-        <form action="#" th:action="@{/candidates/add}" th:object="${candidate}" method="post">
-            <!--<label class="form-label" for="name">Name</label> <input class="form-control" type="text" th:field="*{fullName}" id="name" placeholder="Name"> <br/>
-            <label class="form-label" for="dob">DOB</label> <input class="form-control" type="text" th:field="*{dob}" id="dob" placeholder="Date of birth"> <br/>
-            <label class="form-label" for="phone">Phone</label> <input class="form-control" type="text" th:field="*{phone}" id="phone" placeholder="Phone"> <br/>
-            <label class="form-label" for="email">Email</label> <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email"> <br/>
-
-            <label class="form-label" for="address_num">Address Number</label>
-            <input class="form-control" type="text" th:field="${address.number}" id="address_num" placeholder="number"> <br/>
-            <label class="form-label" for="address_street">Address Street</label> <input type="text" th:field="${address.street}" id="address_street" placeholder="Street"> <br/>
-            <label class="form-label" for="address_city">Address City</label> <input type="text" th:field="${address.city}" id="address_city" placeholder="City"> <br/>
-            <label class="form-label" for="address_zipcode">Address Zip Code</label> <input type="text" th:field="${address.zipcode}" id="address_zipcode" placeholder="Zip code"> <br/>
-            <label class="form-label" for="address_country">Address Country</label>
-            <select class="form-select"  th:field="${address.country}" id="address_country">
-                <option th:each="country : ${countries}" th:value="${country}" th:text="${country.name}"></option>
-            </select>-->
-
-            <div class="row mb-3">
+        <form action="#" th:action="@{/candidates/add}" th:object="${candidate}" method="post"><div class="row mb-3">
                 <label for="name" class="col-sm-1 col-form-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" th:field="*{fullName}">
