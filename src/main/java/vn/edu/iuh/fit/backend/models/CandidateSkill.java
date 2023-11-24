@@ -20,7 +20,7 @@ public class CandidateSkill {
     private Skill skill;
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "can_id")
     private Candidate candidate;
 

@@ -23,7 +23,7 @@ public class Company {
     @Column(name = "comp_name", nullable = false)
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
@@ -39,7 +39,7 @@ public class Company {
     @Column(name = "about", length = 2000)
     private String about;
 
-    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Job> jobs;
 
     public Company(String name, Address address, String webURL, String phone, String email, String about) {

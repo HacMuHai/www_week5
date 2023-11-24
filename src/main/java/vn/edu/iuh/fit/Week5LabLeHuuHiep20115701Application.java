@@ -59,7 +59,7 @@ public class Week5LabLeHuuHiep20115701Application {
             }
 
 //            //Tạo Address và Candidate
-            for (int i = 1; i <= 1000; i++) {
+            for (int i = 1; i < 888; i++) {
                 Address address = new Address(random.nextInt(1, 1000) + "", "Ng Van Bao", "Ho Chi Minh", random.nextInt(70000, 80000) + "", CountryCode.VN);
                 addressRepository.save(address);
 
@@ -72,7 +72,7 @@ public class Week5LabLeHuuHiep20115701Application {
             }
 
             // tạo CandidateSkill
-            for (int i = 1; i < 1000; i++) {
+            for (int i = 1; i < 888; i++) {
                 //tạo 3 CandidateSkill cho mỗi Candidate
                 long iSkill = random.nextInt(1,18);
                 for (int j = 1; j <= 3; j++) {
@@ -85,7 +85,10 @@ public class Week5LabLeHuuHiep20115701Application {
 //            //Tạo company
             int jJob = 0;
             for (int i = 1; i <= 10; i++) {
-                Company company = new Company("Name #" + i, new Address((long) i), "urlWeb #" + i, random.nextLong(1111111111L, 9999999999L) + "", "#" + i + "@gmail.com", "");
+                Address address = new Address(random.nextInt(1, 1000) + "", "Ng Van Bao", "Ho Chi Minh", random.nextInt(70000, 80000) + "", CountryCode.VN);
+                addressRepository.save(address);
+
+                Company company = new Company("Name #" + i, address, "urlWeb #" + i, random.nextLong(1111111111L, 9999999999L) + "", "#" + i + "@gmail.com", "");
                 companyRepository.save(company);
 
                 //tạo 3 job cho mỗi company

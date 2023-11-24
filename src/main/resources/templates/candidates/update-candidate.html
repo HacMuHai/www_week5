@@ -8,9 +8,15 @@
 </head>
 <body>
 <div th:replace="navbar/navbarHome"></div>
-<h1 th:align="center">ADD NEW CANDIDATE</h1>
+<h1 th:align="center">UPDATE CANDIDATE</h1>
 <div class="container">
-    <form class="container" action="#" th:action="@{/candidates/add}" th:object="${candidate}" method="post">
+    <form class="container" th:action="@{/candidates/update}" th:object="${candidate}" method="post">
+        <div class="row mb-3">
+            <label for="id" class="col-sm-1 col-form-label">Id</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control col-12" id="id" th:field="*{id}" readonly>
+            </div>
+        </div>
         <div class="row mb-3">
             <label for="name" class="col-sm-1 col-form-label">Name</label>
             <div class="col-sm-11">
@@ -38,6 +44,7 @@
 
         <div class="row" aria-label="Address">
             <label class="col-sm-1 col-form-label">Address</label>
+            <input type="hidden" th:field="${address.id}">
             <div class="col-sm-7 row">
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="Number" aria-label="Number"
@@ -59,16 +66,22 @@
             <div class="row col-sm-4">
                 <label class="col-sm-4 col-form-label text-center">Country</label>
                 <div class="col-sm-8">
-                    <select class="p-1 col-sm-12" th:field="${address.country}" id="address_country" aria-label="Country">
-                        <option th:each="country : ${countries}" th:value="${country}"
-                                th:text="${country.name}"></option>
+                    <select class="p-1 col-sm-12" th:field="${address.country}" id="address_country"
+                            aria-label="Country">
+                        <option th:each="country : ${countries}"
+                                th:value="${country}"
+                                th:text="${country.name}"
+                                th:class="${country==address.country} ? active"
+                        ></option>
                     </select>
+
                 </div>
             </div>
+
         </div>
         <br/>
         <div class="d-grid gap-2 col-3 mx-auto">
-            <input class="btn btn-primary" type="submit" value="Add Candidate">
+            <input class="btn btn-primary" type="submit" value="Update Candidate">
         </div>
     </form>
 </div>

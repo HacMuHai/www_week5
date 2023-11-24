@@ -2,25 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Candidates</title>
+    <title>Companies</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="navbar/navbarHome"></div>
-<h1 th:align="center">ADD NEW CANDIDATE</h1>
+<h1 th:align="center">UPDATE COMPANY</h1>
 <div class="container">
-    <form class="container" action="#" th:action="@{/candidates/add}" th:object="${candidate}" method="post">
+    <form class="container" th:action="@{/company/update}" th:object="${company}" method="post">
         <div class="row mb-3">
-            <label for="name" class="col-sm-1 col-form-label">Name</label>
+            <label for="id" class="col-sm-1 col-form-label">Id</label>
             <div class="col-sm-11">
-                <input type="text" class="form-control col-12" id="name" th:field="*{fullName}">
+                <input type="text" class="form-control col-12" id="id" th:field="*{id}" readonly>
             </div>
         </div>
         <div class="row mb-3">
-            <label for="dob" class="col-sm-1 col-form-label">DOB</label>
+            <label for="name" class="col-sm-1 col-form-label">Name</label>
             <div class="col-sm-11">
-                <input type="date" class="form-control col-12" id="dob" th:field="*{dob}">
+                <input type="text" class="form-control col-12" id="name" th:field="*{name}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="webUrl" class="col-sm-1 col-form-label">WebURL</label>
+            <div class="col-sm-11">
+                <input type="url" class="form-control col-12" id="webUrl" th:field="*{webURL}">
             </div>
         </div>
         <div class="row mb-3">
@@ -35,9 +41,16 @@
                 <input type="email" class="form-control col-12" id="inputEmail3" th:field="*{email}">
             </div>
         </div>
+        <div class="row mb-3">
+            <label for="about" class="col-sm-1 col-form-label">About</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control col-12" id="about" th:field="*{about}">
+            </div>
+        </div>
 
         <div class="row" aria-label="Address">
             <label class="col-sm-1 col-form-label">Address</label>
+            <input type="hidden" th:field="${address.id}">
             <div class="col-sm-7 row">
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="Number" aria-label="Number"
@@ -67,8 +80,8 @@
             </div>
         </div>
         <br/>
-        <div class="d-grid gap-2 col-3 mx-auto">
-            <input class="btn btn-primary" type="submit" value="Add Candidate">
+        <div class="d-grid gap-2 col-3 mx-auto my-2 py-2">
+            <input class="btn btn-primary col-12" type="submit" value="Update Company">
         </div>
     </form>
 </div>

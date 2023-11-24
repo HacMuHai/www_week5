@@ -10,20 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        div.inline {
-            color: black;
-            float: none;
-            padding: 5px 5px;
-            display: inline-block;
-        }
 
-        div.inline a.active {
-            background-color: #FBD603;
-            border: 1px solid darkred;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -35,12 +22,11 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>dob</th>
-        <th>address</th>
-        <th>phone</th>
-        <th>email</th>
-        <th colspan="2">Edit</th>
-        <!--        <th>Delete</th>-->
+        <th>Dob</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th colspan="2"><a href="candidates/add-candidate">Insert</a></th>
     </tr>
     </thead>
     <tbody>
@@ -51,19 +37,27 @@
         <td th:text="${candidate.address}"></td>
         <td th:text="${candidate.phone}"></td>
         <td th:text="${candidate.email}"></td>
-        <td><a th:href="@{/edit/{id}(id=${candidate.id})}">Edit</a></td>
-        <td><a th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></td>
+        <td><a th:href="@{candidates/update/{id}(id=${candidate.id})}">Edit</a></td>
+        <td><a th:href="@{candidates/delete/{id}(id=${candidate.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
-<div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"
-       th:text="${pageNumber}"
-       th:class="${pageNumber==candidatePage.number + 1} ? active"></a>
-</div>
 
-<br/>
-<div class="inline"><a href="/add-candidate">Add a new Candidate</a></div>
+<div class="text-center">
+    <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=1)}"> << </a>
+    <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number})}"> < </a>
+    <label  th:text=" ${candidatePage.number+1} "
+       class="p-2"
+    ></label>
+    <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number}+2)}"> > </a>
+    <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.totalPages})}"> >> </a>
+</div>
+<!--<div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">-->
+<!--    <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"-->
+<!--       th:text="${pageNumber}"-->
+<!--       th:class="${pageNumber==candidatePage.number + 1} ? active"></a>-->
+<!--</div>-->
+<!--<div class="inline"><a href="/add-candidate">Add a new Candidate</a></div>-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
