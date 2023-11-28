@@ -29,6 +29,8 @@ public class Skill {
     @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
     private List<JobSkill>jobSkills;
 
+    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills;
     public Skill(long id) {
         this.id = id;
     }

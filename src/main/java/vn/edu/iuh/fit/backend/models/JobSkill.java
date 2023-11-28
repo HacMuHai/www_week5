@@ -37,4 +37,5 @@ public class JobSkill {
         this.job = job;
         this.skillLevel = skillLevel;
     }
+
 }

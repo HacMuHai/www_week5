@@ -17,7 +17,7 @@
 <div th:replace="navbar/navbarHome"></div>
 
 <h1 class="text-center">LIST CANDIDATES</h1>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-bordered">
     <thead>
     <tr>
         <th>Id</th>
@@ -26,7 +26,7 @@
         <th>Address</th>
         <th>Phone</th>
         <th>Email</th>
-        <th colspan="2"><a href="candidates/add-candidate">Insert</a></th>
+        <th colspan="3"><a href="candidates/add-candidate">Insert</a></th>
     </tr>
     </thead>
     <tbody>
@@ -39,6 +39,7 @@
         <td th:text="${candidate.email}"></td>
         <td><a th:href="@{candidates/update/{id}(id=${candidate.id})}">Edit</a></td>
         <td><a th:href="@{candidates/delete/{id}(id=${candidate.id})}">Delete</a></td>
+        <td><a th:href="@{candidates/login(id=${candidate.id})}">Login</a></td>
     </tr>
     </tbody>
 </table>
@@ -46,9 +47,7 @@
 <div class="text-center">
     <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=1)}"> << </a>
     <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number})}"> < </a>
-    <label  th:text=" ${candidatePage.number+1} "
-       class="p-2"
-    ></label>
+    <label  th:text=" ${candidatePage.number+1}" class="p-2"></label>
     <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number}+2)}"> > </a>
     <a class="p-1" th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.totalPages})}"> >> </a>
 </div>

@@ -88,7 +88,7 @@ public class Week5LabLeHuuHiep20115701Application {
                 Address address = new Address(random.nextInt(1, 1000) + "", "Ng Van Bao", "Ho Chi Minh", random.nextInt(70000, 80000) + "", CountryCode.VN);
                 addressRepository.save(address);
 
-                Company company = new Company("Name #" + i, address, "urlWeb #" + i, random.nextLong(1111111111L, 9999999999L) + "", "#" + i + "@gmail.com", "");
+                Company company = new Company("Cty #" + i, address, "urlWeb #" + i, random.nextLong(1111111111L, 9999999999L) + "", "#" + i + "@gmail.com", "");
                 companyRepository.save(company);
 
                 //tạo 3 job cho mỗi company

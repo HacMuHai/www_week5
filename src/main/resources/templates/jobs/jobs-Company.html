@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--https://github.com/eugenp/tutorials/blob/master/spring-web-modules/spring-thymeleaf-5/src/main/webapp/WEB-INF/views/listBooks.html-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs with pagination</title>
+    <meta charset="UTF-8">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<div th:replace="navbar/navbarHome"></div>
+<h1 class="text-center">Company</h1>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">ID:</label>
+                <p class="card-text" th:text="${company.id}"></p>
+            </div>
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">Name:</label>
+                <p class="card-text" th:text="${company.name}"></p>
+            </div>
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">Address:</label>
+                <p class="card-text" th:text="${company.address}"></p>
+            </div>
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">Phone:</label>
+                <p class="card-text" th:text="${company.phone}"></p>
+            </div>
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">Email:</label>
+                <p class="card-text" th:text="${company.email}"></p>
+            </div>
+            <div class="row">
+                <label class="mr-2 font-weight-bold text-uppercase">Web URL:</label>
+                <p class="card-text" th:text="${company.webURL}"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<h4 class="text-center mt-3">LIST JOB</h4>
+<table class="table table-striped table-hover w-75 mx-auto table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th colspan="3"><a th:href="@{/job/add}">Insert</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job,stt : ${jobs}">
+        <td th:text="${job.id}"></td>
+        <td th:text="${job.name}"></td>
+        <td th:text="${job.description}"></td>
+       <td> <a th:href="@{/job/update(jobId=${job.id})}">Update</a> </td>
+       <td> <a th:href="@{/job/delete(jobId=${job.id})}">Delete</a> </td>
+       <td> <a th:href="@{/job/detailJobs(jobId=${job.id})}">Details</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

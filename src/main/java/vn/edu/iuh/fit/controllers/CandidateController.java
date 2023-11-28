@@ -2,9 +2,13 @@ package vn.edu.iuh.fit.controllers;
 
 import com.neovisionaries.i18n.CountryCode;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,9 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vn.edu.iuh.fit.backend.models.Address;
 import vn.edu.iuh.fit.backend.models.Candidate;
+import vn.edu.iuh.fit.backend.models.Job;
 import vn.edu.iuh.fit.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
+import vn.edu.iuh.fit.backend.repositories.JobRepository;
 import vn.edu.iuh.fit.backend.services.CandidateServices;
+import vn.edu.iuh.fit.backend.services.JobServices;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +37,10 @@ public class CandidateController {
     private CandidateServices candidateServices;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private JobRepository jobRepository;
+    @Autowired
+    private JobServices jobServices;
 
 
     @GetMapping("/delete/{id}")
@@ -116,15 +127,29 @@ public class CandidateController {
         return modelAndView;
     }
 
-//    @GetMapping("/update-candidate")
-//    public ModelAndView update(Model model) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        Candidate candidate = new Candidate();
-//        candidate.setAddress(new Address());
-//        modelAndView.addObject("candidate", candidate);
-//        modelAndView.addObject("address", candidate.getAddress());
-//        modelAndView.addObject("countries", CountryCode.values());
-//        modelAndView.setViewName("candidates/add-candidate");
-//        return modelAndView;
-//    }
+    @GetMapping("/login")
+    public ModelAndView login(@RequestParam("page") Optional<Integer> page,
+                              @RequestParam("size") Optional<Integer> size,
+                              @RequestParam("id") Optional<Long> candidateId,
+                              Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        int pageCur = page.orElse(1);
+        int sizeCur = size.orElse(10);
+
+        pageCur = Math.max(pageCur, 1);
+        sizeCur = Math.max(sizeCur, 10);
+
+        PageRequest pageRequest = PageRequest.of(pageCur-1, sizeCur, Sort.by("id"));
+        Page<Job> jobPage = jobRepository.findJobsByCanId(candidateId.get(),pageRequest);
+        if (pageCur > jobPage.getTotalPages()){
+            pageRequest = PageRequest.of(jobPage.getTotalPages()-1, sizeCur, Sort.by("id"));
+            jobPage = jobRepository.findJobsByCanId(candidateId.get(),pageRequest);
+        }
+        Candidate candidate = candidateRepository.findById(candidateId.get()).get();
+
+        model.addAttribute("jobPage",jobPage);
+        model.addAttribute("candidate",candidate);
+        modelAndView.setViewName("candidates/find-job");
+        return modelAndView;
+    }
 }

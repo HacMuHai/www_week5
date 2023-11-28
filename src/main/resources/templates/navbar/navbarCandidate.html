@@ -2,17 +2,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/candidates(size=30,page=1)}">Candidate</a>
+                <a class="nav-link" th:href="@{/candidates/findJob(id=${session.candidateId})}">Tìm việc</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/company(size=30,page=1)}">Company</a>
+                <a class="nav-link" th:href="@{/candidates/skill}">Skill</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/job(size=30,page=1)}">Job</a>
-<!--                <a class="nav-link" href="#" >Job</a>-->
+                <a class="nav-link" th:href="@{/candidates/experience}">Experience</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/skill(size=10,page=1)}">Skill</a>
+                <a class="nav-link" th:href="@{/candidates/logout}">Logout</a>
             </li>
         </ul>
     </div>

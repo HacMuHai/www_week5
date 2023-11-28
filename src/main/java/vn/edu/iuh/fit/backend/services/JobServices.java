@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.backend.models.Job;
 import vn.edu.iuh.fit.backend.repositories.JobRepository;
@@ -39,4 +40,5 @@ public class JobServices {
 
         return jobPage;
     }
+
 }

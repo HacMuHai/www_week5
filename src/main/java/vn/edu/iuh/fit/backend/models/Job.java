@@ -24,7 +24,7 @@ public class Job {
     private String description;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company")
     private Company company;
 
