@@ -21,7 +21,11 @@
         <th>Name</th>
         <th>Skill Type</th>
         <th>Description</th>
+<<<<<<< HEAD
         <th colspan="2"><a th:href="@{/skill/add}">Insert</a></th>
+=======
+        <th><a th:href="@{/skill/add}">Insert</a></th>
+>>>>>>> origin/master
     </tr>
     </thead>
     <tbody>
@@ -30,9 +34,14 @@
         <td th:text="${skill.skillName}"></td>
         <td th:text="${skill.type.name()}"></td>
         <td th:text="${skill.skillDescription}"></td>
+<<<<<<< HEAD
         <td th:if="${isPageSuggest}"><a th:href="@{/candidates/add-skill(skillId=${skill.id})}">Học</a></td>
         <td th:if="${!isPageSuggest}"><a th:href="@{/candidates/update-skill(skillId=${skill.id})}">Sửa</a></td>
         <td th:if="${!isPageSuggest}"><a th:href="@{/candidates/delete-skill(skillId=${skill.id})}">Xóa</a></td>
+=======
+        <td  th:if="${isPageSuggest}"><a th:href="@{/candidates/add-skill(skillId=${skill.id})}">Học</a></td>
+        <td  th:if="${isPageSuggest}"><a th:href="@{/candidates/delete-skill(skillId=${skill.id})}">Xóa</a></td>
+>>>>>>> origin/master
     </tr>
     </tbody>
 </table>
