@@ -12,34 +12,39 @@
 
 <div th:replace="navbar/navbarCandidate"></div>
 
-<h1 class="text-center">LIST JOB</h1>
+<h1 th:if="${isPageSuggest}" class="text-center">LIST OF SUGGESTED SKILLS</h1>
+<h1  th:if="${!isPageSuggest}" class="text-center">LIST OF LEARNED SKILLS</h1>
 <table class="table table-striped table-hover w-75 mx-auto table-bordered">
     <thead>
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Company</th>
+        <th>Skill Type</th>
         <th>Description</th>
+        <th><a th:href="@{/skill/add}">Insert</a></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="job, iStat : ${jobPage.content}">
-        <td th:text="${job.id}"></td>
-        <td th:text="${job.name}"></td>
-        <td th:text="${job.company.name}"></td>
-        <td th:text="${job.description}"></td>
+    <tr th:each="skill, stt : ${skillPage.content}">
+        <td th:text="${skill.id}"></td>
+        <td th:text="${skill.skillName}"></td>
+        <td th:text="${skill.type.name()}"></td>
+        <td th:text="${skill.skillDescription}"></td>
+        <td  th:if="${isPageSuggest}"><a th:href="@{/candidates/add-skill(skillId=${skill.id})}">Học</a></td>
+        <td  th:if="${isPageSuggest}"><a th:href="@{/candidates/delete-skill(skillId=${skill.id})}">Xóa</a></td>
     </tr>
     </tbody>
 </table>
 
 <div class="text-center">
-    <a class="p-1" th:href="@{/candidates/findJob(id=${candidate.id},size=${jobPage.size}, page=1)}"> << </a>
-    <a class="p-1" th:href="@{/candidates/findJob(id=${candidate.id},size=${jobPage.size}, page=${jobPage.number})}"> < </a>
-    <label th:text=" ${jobPage.number+1} " class="p-2"></label>
-    <a class="p-1" th:href="@{/candidates/findJob(id=${candidate.id},size=${jobPage.size}, page=${jobPage.number}+2)}"> > </a>
-    <a class="p-1" th:href="@{/candidates/findJob(id=${candidate.id},size=${jobPage.size}, page=${jobPage.totalPages})}"> >> </a>
+    <a class="p-1" th:href="@{/candidates/suggest-skill(id=${session.candidateId},size=${skillPage.size}, page=1)}"> << </a>
+    <a class="p-1" th:href="@{/candidates/suggest-skill(id=${session.candidateId},size=${skillPage.size}, page=${skillPage.number})}"> < </a>
+    <label th:text=" ${skillPage.number+1} "
+           class="p-2"
+    ></label>
+    <a class="p-1" th:href="@{/candidates/suggest-skill(id=${session.candidateId},size=${skillPage.size}, page=${skillPage.number}+2)}"> > </a>
+    <a class="p-1" th:href="@{/candidates/suggest-skill(id=${session.candidateId},size=${skillPage.size}, page=${skillPage.totalPages})}"> >> </a>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

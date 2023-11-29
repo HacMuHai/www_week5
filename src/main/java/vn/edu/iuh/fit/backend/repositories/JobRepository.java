@@ -12,8 +12,9 @@ import java.util.Optional;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
-    @Query("select j from Job j, JobSkill js, CandidateSkill ck" +
-            " where j.id = js.job.id and js.skill.id = ck.skill.id AND ck.candidate.id = :canId"+
+    @Query("select distinct j from Job j, JobSkill js, CandidateSkill ck" +
+            " where j.id = js.job.id and js.skill.id = ck.skill.id AND ck.candidate.id = :canId" +
+            " AND js.skillLevel >= ck.skillLevel " +
             " AND ck.candidate.address.city = j.company.address.city AND ck.candidate.address.country = j.company.address.country")
     Page<Job> findJobsByCanId(long canId, Pageable pageable);
 

@@ -37,7 +37,7 @@ public class Job {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                '}';
+                '}'+"\n";
     }
 
     public Job(long id) {
