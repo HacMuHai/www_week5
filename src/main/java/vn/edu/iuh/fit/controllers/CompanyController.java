@@ -70,10 +70,10 @@ public class CompanyController {
                                           @RequestParam("page") Optional<Integer> page,
                                           @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(30);
+        int pageSize = size.orElse(10);
 
         currentPage = Math.max(currentPage, 1);
-        pageSize = Math.max(pageSize, 0);
+        pageSize = Math.max(pageSize, 10);
 
         long totalCandidates = companyRepository.count();
         int totalPages = (int) Math.ceil((double) totalCandidates / pageSize);
